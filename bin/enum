@@ -1,0 +1,17 @@
+#!/usr/bin/env php
+<?php
+
+use Greeflas\Enum\DeliveryStatus;
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+$label = DeliveryStatus::getLabel(2);
+echo $label . \PHP_EOL;
+
+$statuses = new DeliveryStatus();
+
+foreach ($statuses as $name => $value) {
+    echo \sprintf("%s -> %d\n", $name, $value);
+}
+
+DeliveryStatus::getLabel(9999);

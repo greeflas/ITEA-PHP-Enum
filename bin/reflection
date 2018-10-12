@@ -1,0 +1,31 @@
+#!/usr/bin/env php
+<?php
+
+class Sample
+{
+    private $data;
+
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    private function sayHello()
+    {
+        return 'Hello!';
+    }
+}
+
+$sample = new Sample();
+
+$reflector = new \ReflectionClass(Sample::class);
+$method = $reflector->getMethod('sayHello');
+$method->setAccessible(true);
+$message = $method->invoke($sample);
+\var_dump($message);
+
+$property = $reflector->getProperty('data');
+$property->setAccessible(true);
+$property->setValue($sample, 'This is magic!');
+$data = $sample->getData();
+\var_dump($data);
